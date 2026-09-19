@@ -103,6 +103,11 @@ with tab2:
       st.subheader("Season-wise Matches")
       st.line_chart(season_matches)
 
+       
+      player_of_the_match = matches_df['player_of_match'].value_counts().head(10)
+      st.subheader("Most POTM")
+      st.bar_chart(player_of_the_match)
+
       season_team_wins = (matches_df.groupby(['season', 'winner']).size().unstack(fill_value=0))
       st.subheader("Most Successful Teams by Season")
       st.bar_chart(season_team_wins)
