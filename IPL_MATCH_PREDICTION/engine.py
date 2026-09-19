@@ -3,10 +3,15 @@ import numpy as np
 import pandas as pd
 import streamlit as st
 
-st.set_page_config(page_title="IPL Match Predictor",page_icon="C:\\Users\\DELL\\OneDrive\\Desktop\\IPL_MATCH_PREDICTION\\ipl.jpg",layout="wide")
-pipe = pickle.load(open('model.pkl', 'rb'))
-deliveries_df = pd.read_csv("C:\\Users\\DELL\\Downloads\\deliveries.csv\\deliveries.csv")
-matches_df =  pd.read_csv("C:\\Users\\DELL\\Downloads\\matches.csv")
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+pipe = pickle.load(open(os.path.join(BASE_DIR, "model.pkl"), "rb"))
+
+
+deliveries_df = pd.read_csv(os.path.join(BASE_DIR, "deliveries.csv"))
+matches_df = pd.read_csv(os.path.join(BASE_DIR, "matches.csv"))
+
+st.set_page_config(page_title="IPL Match Predictor",page_icon=os.path.join(BASE_DIR, "ipl.jpg"),layout="wide")
 st.title('IPL Win Predictor 🏏')
 
 tab1, tab2 = st.tabs(["🔍 Prediction Model", "📊 Graphical Analysis"])
